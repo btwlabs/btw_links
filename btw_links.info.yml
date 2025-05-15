@@ -1,0 +1,10 @@
+name: 'BTW Custom Links'
+type: module
+description: 'Provides a container for custom code.'
+core_version_requirement: ^9 || ^10
+package: 'Custom'
+dependencies:
+  - file
+  - image
+  - node
+  - field
