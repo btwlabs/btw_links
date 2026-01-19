@@ -1,0 +1,9 @@
+{
+  "name": "btwlabs/btw_links",
+  "description": "Custom module: btw_links.",
+  "type": "drupal-custom-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^11"
+  }
+}
