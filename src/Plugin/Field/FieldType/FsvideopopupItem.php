@@ -14,7 +14,7 @@ use Drupal\Core\TypedData\DataDefinition;
  * @FieldType(
  *   id = "fsvideopopup",
  *   label = @Translation("FSVideoPopup"),
- *   category = @Translation("General"),
+ *   category = "General",
  *   default_widget = "fs_story_block_video_embed_field_textfield",
  *   default_formatter = "fs_fs_popup_video"
  * )
