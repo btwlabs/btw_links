@@ -2,9 +2,8 @@
 
 namespace Drupal\btw_links\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\Annotation\FieldFormatter;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -27,20 +26,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class VideoEmbedFieldPopup extends FormatterBase implements ContainerFactoryPluginInterface {
-
-  /**
-   * The field formatter plugin instance for thumbnails.
-   *
-   * @var \Drupal\Core\Field\FormatterInterface
-   */
-//  /protected $thumbnailFormatter;
-
-  /**
-   * The field formatter plugin instance for videos.
-   *
-   * @var \Drupal\Core\Field\FormatterInterface
-   */
-  //protected $videoFormatter;
 
   /**
    * The renderer.
@@ -224,10 +209,13 @@ class VideoEmbedFieldPopup extends FormatterBase implements ContainerFactoryPlug
 					'">' .
 					$buttons[$delta] .
 					'</div>';
+      $this->renderer->executeInRenderContext(new RenderContext(), function() use (&$rendered_video, $video) {
+        $rendered_video = $this->renderer->render($video);
+      });
 			$element[$delta] = [
 				'#type' => 'container',
 				'#attributes' => [
-					'data-mfp-video-embed' => (string) $this->renderer->renderRoot($video),
+					'data-mfp-video-embed' => (string) $rendered_video,
 					'class' => ['mfp-video-embed-popup'],
 				],
 				'#attached' => [
